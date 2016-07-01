@@ -1,0 +1,170 @@
+% --------------------------------------------------------------
+% Pacote básico para provas ou listas de exercícios
+% Autor:   Ivan Ramos Pagnossin
+% Data:    Junho de 2016
+% Licença: Creative Commons BY-SA International 4.0
+%
+% Basic package for exams and exercises
+% Author:  Ivan Ramos Pagnossin
+% Date:    June 2016
+% License: Creative Commons BY-SA International 4.0
+% --------------------------------------------------------------
+\ProvidesPackage{irpagnossin-exam}[2016/06/23 v0.1 - Basic exam]
+\RequirePackage{ifthen}
+\RequirePackage{xcolor}
+\RequirePackage{environ}
+\RequirePackage{paralist}
+\RequirePackage{calc}
+
+% Flags
+\newif\if@irpagnossin@showanswer
+\@irpagnossin@showanswerfalse
+
+\newif\if@irpagnossin@showsolution
+\@irpagnossin@showsolutionfalse
+
+\newif\if@at@answer
+\@at@answerfalse
+
+\newif\if@at@solution
+\@at@solutionfalse
+
+\newif\if@at@inlineenum
+\@at@inlineenumfalse
+
+% Counters
+\newcounter{question}
+\newcounter{inlineenumcounter}
+
+% Lengths
+\newlength{\questionskip}
+\setlength{\questionskip}{\bigskipamount}
+
+% Colors
+\def\questioncolor{\color[rgb]{0,0,0}}
+\def\answercolor{\color[rgb]{1,0,1}}
+\def\solutioncolor{\color[rgb]{1,0,1}}
+
+% Labels
+\input{irpagnossin-exam-translation.cfg}
+
+% Question environment
+% Optional argument: question score
+\NewEnviron{question}[1][]{%
+  \refstepcounter{question}
+  \par
+  \vspace{\questionskip}
+  \noindent
+  \begingroup  	
+    \bfseries\upshape\selectfont
+    \questioncolor
+    \MakeUppercase{\questionlabel~\thequestion}%
+  \endgroup  
+  \begingroup
+  	\footnotesize
+    \ifthenelse{\equal{#1}{}}{}{~(#1)}%
+  \endgroup
+  \par
+  \addpenalty{+300}%
+  \noindent\BODY
+  \par
+}{%
+  \addpenalty{-300}%
+}
+
+% Answer enrironment
+\NewEnviron{answer}{
+  \if@irpagnossin@showanswer
+    \@at@answertrue    
+    \vspace{\questionskip}%
+    \par    
+    \noindent
+    \footnotesize
+    \answercolor
+    \begingroup
+      \bfseries\upshape\selectfont
+      \MakeUppercase{\answerlabel}%
+    \endgroup
+    \par
+    \begingroup
+      \BODY
+    \endgroup
+    \par
+  \fi
+}{\@at@answerfalse}
+
+% Solution environment
+\NewEnviron{solution}{
+  \if@irpagnossin@showsolution
+    \@at@solutiontrue
+    \vspace{\questionskip}%    
+    \par    
+    \noindent
+    \footnotesize
+    \solutioncolor
+    \begingroup
+      \bfseries\upshape\selectfont
+      \MakeUppercase{\solutionlabel}%
+    \endgroup
+    \par
+    \begingroup
+      \BODY
+    \endgroup
+    \par
+  \fi
+}{\@at@solutionfalse}
+
+% Enumerate uses (a), (b) etc as default
+\renewenvironment{enumerate}{%
+  \if@at@answer
+    \let\enumeratecolor=\answercolor
+  \else
+    \if@at@solution
+      \let\enumeratecolor=\solutioncolor
+    \else
+      \let\enumeratecolor=\questioncolor
+    \fi
+  \fi
+  \begin{compactenum}[\bfseries\enumeratecolor(a)]%
+}{%
+  \end{compactenum}%
+}
+
+% Inline enumerate environment: each item does NOT initiate a new paragraph
+\newenvironment{inlineenum}{%
+  \@at@inlineenumtrue
+  \setcounter{inlineenumcounter}{0}%
+}{%
+  \@at@inlineenumfalse
+}
+
+% Inline item
+\providecommand\inlineitem{%
+  \if@at@inlineenum
+    \if@at@answer
+      \let\enumeratecolor=\answercolor
+    \else
+      \if@at@solution
+        \let\enumeratecolor=\solutioncolor
+      \else
+        \let\enumeratecolor=\questioncolor
+      \fi
+    \fi
+    \stepcounter{inlineenumcounter}%
+    \begingroup
+      \bfseries\enumeratecolor(\alph{inlineenumcounter})~%
+    \endgroup
+  \fi
+}
+
+% If present, option "answer" shows answers, if they exist
+\DeclareOption{answer}{%
+  \global\@irpagnossin@showanswertrue%
+}
+
+% If present, option "solution" shows solutions, if they exist
+\DeclareOption{solution}{%
+  \global\@irpagnossin@showsolutiontrue
+}
+
+\ProcessOptions\relax
