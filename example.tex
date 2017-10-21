@@ -2,15 +2,19 @@
 
 	\usepackage[utf8]{inputenc}
 	\usepackage{ae}
+	\usepackage{geometry}
+	\usepackage{booktabs}
+	\usepackage{tabularx}
 
 	\usepackage{tikz}\usetikzlibrary{calc,arrows}
 
 	\usepackage{amsmath}
 	\usepackage{amsfonts}
-	
+
 	\usepackage[answer,solution]{irpagnossin-exam}
 
+	\newcommand\addquestion[2]{\def\path{#1}\input{\path/#2}}
+
 \begin{document}
-	\input{mathematics/1.tex}
-	\input{mathematics/2/2.tex}
+	\input{statistics/dice_5.tex}
 \end{document}
