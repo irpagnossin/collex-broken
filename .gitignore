@@ -33,4 +33,4 @@ assets/
 *.xdy
 *.tdo
 *~
-./all_questions.tex
+all_questions.tex
