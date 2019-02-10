@@ -17,7 +17,7 @@
 
 	\begin{answer}
 		\begin{enumerate}
-			\item $\left(m_1 + \frac{3}{4}m_2 + \frac{1}{4}m_3\right)\ddot x_1 - m_1 g + m_2 g \sin \varphi = 0$
+			\item $\left(\half m_1 + \frac{3}{4}m_2 + \frac{1}{4}m_3\right)\ddot x_1 - m_1 g + m_2 g \sin \varphi = 0$
 			\item $\ddot x_1 = \measure{3.97}{m/s^2}$ (\ie, o objeto 1 desce com aceleração de \measure{3.97}{m/s^2})
 			\item \measure{9.92e-3}{N.m}
 		\end{enumerate}
@@ -53,13 +53,13 @@
 
 			Usando esses resultados em \eqref{eq:lagrangeana}, bem como o fato de que $I_2 = \half m_2 R^2$ e $I_3 = \half m_3 R^2$ (ambos são discos com massa uniformemente distribuída), e simplificando, obtemos o resutlado desejado:
 			\begin{equation*}
-				L = \half\left(m_1 + \frac{3}{4}m_2 + \frac{1}{4}m_3\right)\dot x_1^2 + m_1 g x_1 + m_2 g (C - x_1) \sin\varphi.
+				L = \left(\half m_1 + \frac{3}{4}m_2 + \frac{1}{4}m_3\right)\dot x_1^2 + m_1 g x_1 + m_2 g (C - x_1) \sin\varphi.
 			\end{equation*}
 
 			O termo constante, devido a $C$ (vínculo 1), é dispensável, pois desaparecerá ao derivarmos $L$ para obter as equações de Euler-Lagrante.
 			Por isso, podemos ainda escrever:
 			\begin{equation*}
-				L = \half\left(m_1 + \frac{3}{4}m_2 + \frac{1}{4}m_3\right)\dot x_1^2 + (m_1 g - m_2 g \sin\varphi)x_1.
+				L = \left(\half m_1 + \frac{3}{4}m_2 + \frac{1}{4}m_3\right)\dot x_1^2 + (m_1 g - m_2 g \sin\varphi)x_1.
 			\end{equation*}
 
 			\item A aceleração $\ddot x_1$ vem da equação de movimento do objeto 1, que pode ser obtida por meio da equação de Euler-Lagrange para $x_1$:
@@ -69,16 +69,16 @@
 
 			Precisamos, então, determinar cada uma das derivadas de $L$:
 			\begin{align*}
-				\pd{L}{\dot x_1} &= \left(m_1 + \frac{3}{4}m_2 + \frac{1}{4}m_3\right)\dot x_1 \quad\Rightarrow\quad
-					\frac{d}{dt}\pd{L}{\dot x_1} = \left(m_1 + \frac{3}{4}m_2 + \frac{1}{4}m_3\right)\ddot x_1 \\
+				\pd{L}{\dot x_1} &= \left(m_1 + \frac{3}{2}m_2 + \frac{1}{2}m_3\right)\dot x_1 \quad\Rightarrow\quad
+					\frac{d}{dt}\pd{L}{\dot x_1} = \left(m_1 + \frac{3}{2}m_2 + \frac{1}{2}m_3\right)\ddot x_1 \\
 				\pd{L}{x_1} &= m_1g - m_2g\sin\varphi
 			\end{align*}
 
 			Levando esses resultados em \eqref{eq:euler-lagrange}, obtemos:
 			\begin{equation*}
-				\left(m_1 + \frac{3}{4}m_2 + \frac{1}{4}m_3\right)\ddot x_1 - m_1 g + m_2 g \sin \varphi = 0
+				\left(m_1 + \frac{3}{2}m_2 + \frac{1}{2}m_3\right)\ddot x_1 - m_1 g + m_2 g \sin \varphi = 0
 				\quad\Rightarrow\quad
-				\ddot x_1 = \frac{m_1 - m_2 \sin \varphi}{m_1 + \frac{3}{4}m_2 + \frac{1}{4}m_3}g
+				\ddot x_1 = \frac{m_1 - m_2 \sin \varphi}{m_1 + \frac{3}{2}m_2 + \frac{1}{2}m_3}g
 			\end{equation*}
 
 			Finalmente, aplicando os valores de $m_1$, $m_2$, $m_3$, $\varphi$ e $g$ do enunciado, obtemos o resultado desejado: $\ddot x_1 = \measure{3.97}{m/s^2}$.
