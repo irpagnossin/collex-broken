@@ -99,7 +99,7 @@ from math import sin, pi, abs
 
 def question_4b(m1, m2, m3, phi, r, g = 10):
 	angle = phi/180 * pi
-	return((m1 - m2 * sin(angle)) * g / (m1 + 3/4 * m2 + 1/4 * m3))
+	return((m1 - m2 * sin(angle)) * g / (m1 + 3/2 * m2 + 1/2 * m3))
 
 def question_4c(m1, m2, m3, phi, r, g = 10):
 	a = question_4b(m1, m2, m3, phi, r, g)
