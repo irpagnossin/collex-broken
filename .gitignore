@@ -34,3 +34,4 @@
 *~
 all_questions.tex
 *.pyc
+*(*).tex
